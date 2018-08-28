@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        .default{
+            width: 140px;
+            border: 1px solid #eee;
+            padding:10px;
+            box-sizing:border-box;
+            position: relative;
+        }
+        img{
+            width: 100%;
+            height: auto;
+        }
+        .edit{
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            right:4px;
+            top:4px;
+            background:url(/images/pencile.svg);
+            background-size:cover;
+            display:none;
+            cursor: pointer;
+        }
+        .default:hover .edit{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <form action="/uploadAvatar"  method = "POST"  encType = "multipart/form-data" id="form" >
+        <input type="file" name="adminavatar" hidden id="adminavatar"/>
+        <input type="submit" name="上传" hidden />
+    </form>
+    <div class="default">
+        <span class="edit"></span>
+        <img src="/getAvatar" alt="" />
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="../js-lib/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+    $(".edit").click(function () {
+       $("#adminavatar").trigger("click");
+    });
+    $("#adminavatar").change(function () {
+
+        $("#form")[0].submit();
+
+        window.parent.openXuanfu();
+    });
+</script>
